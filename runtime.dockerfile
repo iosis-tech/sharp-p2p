@@ -66,8 +66,12 @@ COPY --from=stone-prover /bin/cpu_air_verifier /root/.local/bin/
 WORKDIR /sharp-p2p
 
 # Copy the current directory content into the container
-COPY . .
+COPY cairo/ cairo/
+COPY requirements.txt requirements.txt
 
 # Install requirements
-RUN cargo make python-requirements-install && \
-    cargo make python-bootloader-install
+RUN pip install -r requirements.txt && \
+    pip install cairo/
+
+# Copy the current directory content into the container
+COPY . .
