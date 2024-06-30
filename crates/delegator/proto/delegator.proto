@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package delegator;
+
+service DelegatorService {
+  rpc Delegator(stream DelegateRequest) returns (stream DelegateResponse) {}
+}
+
+message DelegateRequest { bytes cairo_pie = 1; }
+message DelegateResponse {
+  bytes proof = 1;
+  uint64 job_hash = 2;
+}
